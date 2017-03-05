@@ -1,3 +1,23 @@
+if CLIENT then
+CreateClientConVar( "cl_connectsound", "1", true, false )
+local function DispatchChatJoinMSG(um)
+	local ply = um:ReadString()
+	local mode = um:ReadString()
+	local id = um:ReadString()
+
+	if mode == "1" then
+		chat.AddText(Color(72,72,72),"[SERVER] ",Color(145,145,145),ply,Color(235, 235, 235),", ",Color(0, 127, 127)," Joint ",Color(235, 235, 235),"den Server!")
+		if GetConVarNumber( "cl_connectsound" ) == 1 then
+			surface.PlaySound("buttons/combine_button3.wav")
+		end
+	elseif mode == "2" then
+		chat.AddText(Color(72,72,72),"[SERVER] ",Color(145,145,145),ply,Color(235, 235, 235),", hat",Color(0, 127, 31)," Hat fertig geladen")
+		print("("..id..")")
+	elseif mode == "3" then
+		chat.AddText(Color(72,72,72),"[SERVER] ",Color(145,145,145),ply,Color(235, 235, 235),",",Color(255, 30, 30)," Verlässt ",Color(235, 235, 235),"den Server!")
+		print("("..id..")")
+		if GetConVarNumber( "cl_connectsound" ) == 1 then
+		surface.PlaySound("buttons/combine_button2.wav")
 		end
 	end
 end
